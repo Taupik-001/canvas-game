@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 canvas {
   margin: 0 5.3em;
 }
@@ -24,8 +29,20 @@ button:hover {
   transition: 0.6s;
 }
 
+.game2 {
+  background-image: url(bgfarish1.png);
+  background-repeat: no-repeat;
+}
+
 .tombol {
   display: grid;
   place-items: center;
   margin-top: -20em;
+}
+
+.tombol2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  gap: 2em;
 }
