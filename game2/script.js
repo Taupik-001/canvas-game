@@ -55,7 +55,7 @@ function PlayButton() {
 function level1() {
   // levelOne = new property(0, 0, 1200, 600, "../img/yadzka.jpeg", "background");
   levelOne = new property(0, 0, 1200, 600, "bgfarish1.png", "background");
-  karakter = new property(10, 600, 80, 120, "../img/foto1.png", "image");
+  karakter = new property(10, 600, 80, 120, "mobil.png", "image");
   musuh = new property(1000, 865, 120, 90, "../img/mobil2.png", "image");
   gameRunning();
 }
@@ -225,7 +225,7 @@ function stopMove(event) {
   } else if (keyPressed == right) {
     karakter.objX = 0;
   } else if (keyPressed == up) {
-    karakter.objY = 0;
+    karakter.objY = 1;
   } else if (keyPressed == down) {
     karakter.objY = 0;
   }
@@ -246,7 +246,7 @@ function isi() {
     karakter.movement();
     karakter.objX += 0.01;
     karakter.update();
-    musuh.objX -= 0.5;
+    musuh.objX -= 0.1;
     musuh.update();
     musuh.movement();
   }

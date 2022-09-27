@@ -3,10 +3,10 @@ var myObstacles = [];
 
 function startGame() {
   myGamePiece = new component(50, 50, "../img/mobil.png", 10, 190, "image");
-  // myObstacles = new component(80, 45, "image/pesawat.png", 300, 120, "image")
+  // myObstacles = new component(80, 45, "image/pesawat.png", 300, 120, "image");
   myGameArea.start();
 }
-let canvas = DOCzzz
+// let canvas = DOCzzz
 var myGameArea = {
   canvas: document.createElement("canvas"),
   start: function () {
@@ -76,7 +76,7 @@ function component(width, height, color, x, y, type) {
     var otherbottom = otherobj.y + otherobj.height;
     var crash = true;
     if (
-      mybottom < othertop ||
+      mybottom < otherbottom ||
       mytop > otherbottom ||
       myright < otherleft ||
       myleft > otherright
@@ -95,7 +95,7 @@ function component(width, height, color, x, y, type) {
   };
 
   this.hitBottom = function () {
-    let objBottom = 230 - this.height;
+    let objBottom = 275 - this.height;
     if (this.y > objBottom) {
       this.y = objBottom;
     }
@@ -116,8 +116,55 @@ function component(width, height, color, x, y, type) {
   };
 }
 
+// function updateGameArea() {
+//   var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+//   for (i = 0; i < myObstacles.length; i += 1) {
+//     if (myGamePiece.crashWith(myObstacles[i])) {
+//       myGameArea.stop();
+//       return;
+//     }
+//   }
+//   myGameArea.clear();
+//   myGameArea.frameNo += 1;
+//   if (myGameArea.frameNo == 1 || everyinterval(150)) {
+//     x = myGameArea.canvas.width;
+//     minHeight = 20;
+//     maxHeight = 200;
+//     height = Math.floor(
+//       Math.random() * (maxHeight - minHeight + 1) + minHeight
+//     );
+//     minGap = 50;
+//     maxGap = 200;
+//     // gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
+//     gap = Math.floor(Math.random() * (1080 - 200 + 5) + 100);
+//     // gap = 0;
+//     myObstacles.push(
+//       new component(80, 45, "../img/mobil2.png", height, gap, "image")
+//     );
+//     myObstacles.push(
+//       new component(80, 45, "../img/mobil2.png", height, gap, "image")
+//     );
+//   }
+//   for (i = 0; i < myObstacles.length; i += 1) {
+//     myObstacles[i].speedX -= 0.01;
+//     myObstacles[i].update();
+//     myObstacles[i].movement();
+//   }
+//   myGamePiece.movement();
+//   myGamePiece.update();
+// }
+
+function updateGameArea() {}
+
+function everyinterval(n) {
+  if ((myGameArea.frameNo / n) % 1 == 0) {
+    return true;
+  }
+  return false;
+}
+
 function updateGameArea() {
-  var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+  var x, y;
   for (i = 0; i < myObstacles.length; i += 1) {
     if (myGamePiece.crashWith(myObstacles[i])) {
       myGameArea.stop();
@@ -128,39 +175,18 @@ function updateGameArea() {
   myGameArea.frameNo += 1;
   if (myGameArea.frameNo == 1 || everyinterval(150)) {
     x = myGameArea.canvas.width;
-    minHeight = 20;
-    maxHeight = 200;
-    height = Math.floor(
-      Math.random() * (maxHeight - minHeight + 1) + minHeight
-    );
-    minGap = 50;
-    maxGap = 200;
-    // gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-    gap = Math.floor(Math.random() * (1080 - 200 + 5) + 100);
-    // gap = 0
+    y = myGameArea.canvas.height - 200;
     myObstacles.push(
-      new component(80, 45, "../img/mobil2.png", height, gap, "image")
+      new component(50, 50, "../img/mobil2.png", x, 170, "image")
     );
-    // myObstacles.push(new component(80, 45, "../img/mobil2.png", height, gap, "image" ));
   }
   for (i = 0; i < myObstacles.length; i += 1) {
-    myObstacles[i].speedX -= 0.01;
-    myObstacles[i].movement();
+    myObstacles[i].x += -1;
     myObstacles[i].update();
-    myGamePiece.movement();
-    myGamePiece.update();
   }
-}
-
-function everyinterval(n) {
-  if ((myGameArea.frameNo / n) % 1 == 0) {
-    return true;
-  }
-  return false;
-}
-
-function updateGameArea() {
-  myGameArea.clear();
+  // myGamePiece.movement();
+  // myGamePiece.update();
+  // myGameArea.clear();
   myGamePiece.speedX = 0;
   myGamePiece.speedY = 0;
   if (myGameArea.key && myGameArea.key == 37) {
